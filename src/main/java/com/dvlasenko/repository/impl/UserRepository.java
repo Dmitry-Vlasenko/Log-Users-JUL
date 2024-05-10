@@ -10,11 +10,14 @@ import org.hibernate.query.MutationQuery;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserRepository implements AppRepository<User> {
 
     private final static String ENTITY_USERS = "User";
-
+    private static final Logger LOGGER =
+            Logger.getLogger(UserRepository.class.getName());
     @Override
     public String create(User user) {
         Transaction transaction = null;
@@ -33,6 +36,7 @@ public class UserRepository implements AppRepository<User> {
             if (transaction != null) {
                 transaction.rollback();
             }
+            LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
             return e.getMessage();
         }
     }
@@ -47,6 +51,7 @@ public class UserRepository implements AppRepository<User> {
             transaction.commit();
             return Optional.of(list);
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
             return Optional.empty();
         }
     }
@@ -72,6 +77,7 @@ public class UserRepository implements AppRepository<User> {
                 if (transaction != null) {
                     transaction.rollback();
                 }
+                LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
                 return e.getMessage();
             }
         }
@@ -95,6 +101,7 @@ public class UserRepository implements AppRepository<User> {
                 if (transaction != null) {
                     transaction.rollback();
                 }
+                LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
                 return e.getMessage();
             }
         }
@@ -116,6 +123,7 @@ public class UserRepository implements AppRepository<User> {
             if (transaction != null) {
                 transaction.rollback();
             }
+            LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
             return Optional.empty();
         }
     }

@@ -14,4 +14,7 @@ public final class Constants {
     public final static String INPUT_REQ_MSG = "Input required.";
     public final static String INCORRECT_VALUE_MSG = ">> Incorrect value! Try again.";
     public final static String INCORRECT_OPTION_MSG = ">> Incorrect option! Try again.";
+
+    public final static String LOG_DATA_INPTS_WRONG_MSG = "Data inputs incorrect.";
+    public final static String LOG_DB_ERROR_MSG = "DB manipulations error.";
 }

@@ -11,9 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserService {
-
+    private static final Logger LOGGER =
+            Logger.getLogger(UserService.class.getName());
     final UserRepository repository = new UserRepository();
 
     public String create(Map<String, String> data) {
@@ -23,6 +26,7 @@ public class UserService {
             try {
                 throw new UserException("Check inputs", errors);
             } catch (UserException e) {
+                LOGGER.log(Level.WARNING, Constants.LOG_DATA_INPTS_WRONG_MSG);
                 return e.getErrors(errors);
             }
         }
@@ -53,6 +57,7 @@ public class UserService {
             try {
                 throw new UserException("Check inputs", errors);
             } catch (UserException e) {
+                LOGGER.log(Level.WARNING, Constants.LOG_DATA_INPTS_WRONG_MSG);
                 return e.getErrors(errors);
             }
         }
@@ -66,6 +71,7 @@ public class UserService {
             try {
                 throw new UserException("Check inputs", errors);
             } catch (UserException e) {
+                LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
                 return e.getErrors(errors);
             }
         }
@@ -79,6 +85,7 @@ public class UserService {
             try {
                 throw new UserException("Check inputs", errors);
             } catch (UserException e) {
+                LOGGER.log(Level.WARNING, Constants.LOG_DB_ERROR_MSG);
                 return e.getErrors(errors);
             }
         }
